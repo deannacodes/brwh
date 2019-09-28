@@ -193,15 +193,7 @@ export default {
       }
     },
     addToFavorites(user) {
-      let u = {
-        id: user.username,
-        name: user.name,
-        location: user.location,
-        score: user.score,
-        img: user.avatar,
-        company: user.company
-      };
-      this.$store.commit("addTeam", u);
+      this.$store.commit("addTeam", user);
     },
     isAdded(id) {
       return this.favorites.filter(x => x.id == id).length > 0;

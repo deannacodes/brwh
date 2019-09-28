@@ -3,8 +3,6 @@ import Vue from 'vue'
 import Axios from 'axios';
 Vue.use(Vuex)
 
-const base = "https://api.github.com/"
-
 export const store = new Vuex.Store({
     state: {
         favorites: sampleFavorites(),

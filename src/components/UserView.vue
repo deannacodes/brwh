@@ -90,8 +90,7 @@ export default {
       this.error = "";
     },
     addToFavorites(user) {
-      let u = { id: user.login, name: user.name, location: user.location, score: user.score, img: user.avatar_url, company: user.company }
-      this.$store.commit("addTeam", u);
+      this.$store.commit("addTeam", uuser);
     },
     isAdded(id) {
       return (this.favorites.filter(x => x.username == id).length > 0)

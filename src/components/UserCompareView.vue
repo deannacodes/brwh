@@ -10,7 +10,7 @@
         start-color="#4eaba8"
         stop-color="#489290"
         inner-stroke-color="#efefef"
-        stroke-width="20"
+        stroke-width=20
       >
         <h1>{{compatibilityScore}}</h1>
       </radial-progress-bar>
