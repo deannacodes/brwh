@@ -2,7 +2,6 @@
   <div class="compare-page">
     <template v-if="compareUser == null">
       <div class="compare-content">
-        <div v-if="error != ''" class="alert alert-danger fade show" role="alert">{{ error }}</div>
         <h1>{{title}}</h1>
         <div class="input-group flex-nowrap" style="margin-top:30px;">
           <div class="input-group-prepend">
@@ -12,8 +11,6 @@
             type="text"
             class="form-control search-textbox"
             placeholder="Username"
-            aria-label="Username"
-            aria-describedby="addon-wrapping"
             v-model="queryA"
           />
           <div class="input-group-append">
@@ -38,8 +35,6 @@
             type="text"
             class="form-control search-textbox"
             placeholder="Username"
-            aria-label="Username"
-            aria-describedby="addon-wrapping"
             v-model="queryB"
           />
           <div class="input-group-append">
@@ -53,11 +48,12 @@
             </b-button>
           </div>
         </div>
-        <button class="btn btn-main" @click="compareUsers" style="margin-top:30px;">
+        <button class="btn btn-main" @click="compare" style="margin-top:30px;">
           <font-awesome-icon icon="balance-scale" />Compare
         </button>
       </div>
     </template>
+
     <template v-else>
       <div class="col-md-2 profile-sidebar" style="padding-top: 30px;">
         <img :src="compareUser[0].avatar" />
@@ -175,9 +171,8 @@ export default {
     };
   },
   methods: {
-    compareUsers() {
+    compare() {
       this.$store.dispatch("compareUsers", this.queryA, this.queryB);
-      this.$store.commit('setLoading', true)
     },
     chooseSaved(modal, id) {
       if (modal == "chooseSavedB") {
