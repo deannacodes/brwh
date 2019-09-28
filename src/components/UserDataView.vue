@@ -111,7 +111,7 @@
           <div class="row">
             <radial-progress-bar
               :diameter="200"
-              :completed-steps="viewingUser.community_scores.code_quality_index"
+              :completed-steps="viewingUser.scores.code_quality"
               :total-steps="100"
               start-color="#4eaba8"
               stop-color="#489290"
@@ -119,7 +119,7 @@
               stroke-width="5"
               style="margin: 0 auto;"
             >
-              <h6>{{viewingUser.community_scores.code_quality_index}}</h6>
+              <h6>{{viewingUser.scores.code_quality}}</h6>
             </radial-progress-bar>
           </div>
         </div>
