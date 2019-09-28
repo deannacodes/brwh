@@ -20,7 +20,7 @@
           @click="clearCompare"
           class="btn btn-main"
         >
-          Clear Query
+          New Query
         </button>
         </center>
     </div>

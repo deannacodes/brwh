@@ -131,11 +131,11 @@
           <div class="list-group list-group-flush">
             <a
               v-for="user in favorites"
-              v-bind:key="user.id"
-              @click="chooseSaved('chooseSavedA', user.id)"
+              v-bind:key="user.username"
+              @click="chooseSaved('chooseSavedA', user.username)"
               href="#"
               class="list-group-item list-group-item-action"
-            >{{user.id}}</a>
+            >{{user.username}}</a>
           </div>
         </div>
       </form>
@@ -148,11 +148,11 @@
           <div class="list-group list-group-flush">
             <a
               v-for="user in favorites"
-              v-bind:key="user.id"
-              @click="chooseSaved('chooseSavedB', user.id)"
+              v-bind:key="user.username"
+              @click="chooseSaved('chooseSavedB', user.username)"
               href="#"
               class="list-group-item list-group-item-action"
-            >{{user.id}}</a>
+            >{{user.username}}</a>
           </div>
         </div>
       </form>
@@ -196,7 +196,7 @@ export default {
       this.$store.commit("addTeam", user);
     },
     isAdded(id) {
-      return this.favorites.filter(x => x.id == id).length > 0;
+      return this.favorites.filter(x => x.username == id).length > 0;
     }
   },
 

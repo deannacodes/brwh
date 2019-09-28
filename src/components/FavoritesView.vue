@@ -21,7 +21,7 @@
           <button style="margin-right: 10px" class="btn btn-main" v-on:click="viewUser(user)">
             <font-awesome-icon icon="newspaper" /> Report
           </button>
-          <button class="btn btn-delete" v-on:click="del(user.id)">
+          <button class="btn btn-delete" v-on:click="del(user.username)">
             <font-awesome-icon icon="times" />
           </button>
         </div>
