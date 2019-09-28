@@ -53,7 +53,7 @@
             </b-button>
           </div>
         </div>
-        <button class="btn btn-main" style="margin-top:30px;">
+        <button class="btn btn-main" :click="compareUsers" style="margin-top:30px;">
           <font-awesome-icon icon="balance-scale" />Compare
         </button>
       </div>
