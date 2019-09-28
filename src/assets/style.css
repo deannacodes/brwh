@@ -223,20 +223,32 @@ button:disabled:hover {
     padding: 30px;
     max-width: 30%;
     width: 30%;
-
+    line-height: 30px;
     display: inline-block;
     text-align: left;
+    min-height: 250px;
 
 }
 
 .score-card .svg-inline--fa {
-    margin-top: 5px;
+    margin-top: 2px;
     margin-right: 5px;
+    color: #4eaba8;
+    margin-left: 15px;
+    font-size: 20pt;
 }
 
 .score-card-main {
     max-width: 70%;
     width: 70%;
+}
+
+.score-card-main .radial-progress-container {
+    margin: 0 auto;
+}
+
+.score-card-main h1 {
+    text-align: center;
 }
 
 .score-name {

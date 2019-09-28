@@ -3,19 +3,36 @@
   <div class="container-fluid data-holder" style="background: none">
     <div class="score-card score-card-main">
       <h1>Overall Score</h1>
-      {{viewingUser.overall_score}}
+      <radial-progress-bar :diameter="300"
+                       :completed-steps="viewingUser.overall_score"
+                       :total-steps="1"
+                       start-color="#4eaba8"
+                       stop-color="#489290"
+                       inner-stroke-color="#efefef"
+                       stroke-width="20">
+   <h1>{{viewingUser.overall_score}}</h1>
+  </radial-progress-bar>
+      
       <hr />
       <div class="row" v-for="(score, type) in viewingUser.scores" v-bind:key="type">
-        <div class="col-md-9 score-name">{{ type }}</div>
-        <div class="col-md-3">{{ score }}</div>
+        <div class="col-md-9 score-name"><h5>{{ type }}</h5></div>
+        <div class="col-md-3">      <radial-progress-bar :diameter="65"
+                       :completed-steps="score"
+                       :total-steps="1"
+                       start-color="#4eaba8"
+                       stop-color="#489290"
+                       inner-stroke-color="#efefef"
+                       stroke-width="5">
+   <h6>{{score}}</h6>
+  </radial-progress-bar></div>
       </div>
     </div>
 
-    <br>
+    <br />
 
     <div class="score-card">
       <h3>Java Repository Stats</h3>
-      <hr>
+      <hr />
       <div class="java-stat row">
         <div class="col-md-9">Number of Repos:</div>
         <div class="col-md-3">{{viewingUser.num_of_java_repos}}</div>
@@ -25,8 +42,8 @@
         <div class="col-md-3">{{viewingUser.avg_stars_count_per_repo}}</div>
       </div>
       <div class="java-stat row">
-        <div class="col-md-9">Average Open Issues per Repo:</div>
-        <div class="col-md-3">{{viewingUser.avg_open_issues_per_repo}}</div>
+        <div class="col-md-9">Average Closed Issues per Repo:</div>
+        <div class="col-md-3">{{viewingUser.closed_issue_ratio}}</div>
       </div>
       <div class="java-stat row">
         <div class="col-md-9">Average Fork Count:</div>
@@ -36,7 +53,7 @@
 
     <div class="score-card">
       <h3>Best Practices</h3>
-      <hr>
+      <hr />
       <div class="best-practices row">
         <font-awesome-icon v-if="viewingUser.has_maven_gradle" icon="check-square" />
         <font-awesome-icon v-else icon="square" />Uses Maven or Gradle
@@ -65,6 +82,7 @@
 
 <script>
 import { mapState } from "vuex";
+import RadialProgressBar from 'vue-radial-progress'
 
 export default {
   name: "UserView",
@@ -75,10 +93,20 @@ export default {
       searchTitle: "Search Github Users"
     };
   },
-  methods: {},
+  methods: {
+      progress(event,progress,stepValue){
+        console.log(stepValue);
+      },
+      progress_end(event){
+        console.log("Circle progress end");
+      }
+  },
   computed: mapState({
     viewingUser: "viewingUser"
-  })
+  }),
+  components: {
+    RadialProgressBar
+  }
 };
 </script>
 
