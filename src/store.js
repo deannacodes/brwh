@@ -8,9 +8,9 @@ export const store = new Vuex.Store({
         favorites: sampleFavorites(),
         menu: "Search",
         loading: false,
-        viewingUser: sampleUser(),
-        compareUser: sampleCompareUsers(),
-        compatibilityScore: 99
+        viewingUser: null,
+        compareUser: null,
+        compatibilityScore: null
     },
     mutations: {
         addTeam(state, user) {
@@ -53,20 +53,21 @@ export const store = new Vuex.Store({
                 .then((response) => {
                     console.log(response.data)
                     if (response.message != "Not Found") {
-                        commit('setViewingUser', JSON.parse(response.data))
+                        commit('setViewingUser', response.data)
                     }
                     commit('setLoading', false)
                 })
                 .catch(commit('setLoading', false))
         },
-        compareUsers({ commit }, idA, idB) {
-            let query = "http://localhost:5000/compare?userA=" + idA + "&userB=" + idB
+        compareUsers({ commit }, users) {
+            console.log(users[0], users[1])
+            let query = "http://localhost:5000/compare?userA=" + users[0] + "&userB=" + users[1 ]
             console.log("Reached");
             Axios.get(query)
                 .then((response) => {
-                    let users = [JSON.parse(response.data).userA, JSON.parse(response.data).userB]
+                    let users = [response.data.userA, response.data.userB]
                     commit('setCompareUser',users)
-                    commit('setCompatibilityScore', JSON.parse(response.data).similarity)
+                    commit('setCompatibilityScore', response.data.similarity)
                     commit('setLoading', false)
                 }).catch(commit('setLoading', false))
 
@@ -77,84 +78,11 @@ export const store = new Vuex.Store({
 
 function sampleFavorites() {
     let user1 = sampleUser()
-    let user2 = sampleUser()
-    let user3 = sampleUser()
-    return [user1, user2, user3]
+    return [user1]
 }
 
 function sampleUser() {
-    return {
-        "name": "Adrian",
-        "username": "garlicsauce",
-        "avatar": "https://avatars0.githubusercontent.com/u/10085330?v=4(25 kB)",
-        "bio": "24 years old java and angular developer.",
-        "email": "adrian.michalik@wp.pl",
-        "location": "Warsaw",
-        "company": "@HLTech",
-        "num_of_java_repos": 2,
-        "avg_stars_count_per_repo": 0.5,
-        "closed_issue_ratio": 0.9565217391304348,
-        "avg_fork_count": 0.0,
-        "has_maven_gradle": true,
-        "has_readme": true,
-        "uses_branches": true,
-        "top_dependencies": [
-            [
-                "junit",
-                2
-            ],
-            [
-                "judge-d-contract-publisher-core",
-                1
-            ],
-            [
-                "maven-plugin-testing-harness",
-                1
-            ],
-            [
-                "maven-plugin-annotations",
-                1
-            ],
-            [
-                "maven-compiler-plugin",
-                1
-            ],
-            [
-                "maven-gpg-plugin",
-                1
-            ],
-            [
-                "maven-javadoc-plugin",
-                1
-            ],
-            [
-                "maven-plugin-plugin",
-                1
-            ],
-            [
-                "maven-source-plugin",
-                1
-            ],
-            [
-                "maven-surefire-plugin",
-                1
-            ]
-        ],
-        "overall_score": 61,
-        "scores": {
-            "versatility": 40,
-            "best_practices": 100,
-            "github_activity": 43,
-            "community_score": 21
-        },
-        "community_scores": {
-            "comments_quality_score": 0,
-            "pr_quality_score": 43
-        },
-        "avg_response_time": 0.0,
-        "code_additions": 336,
-        "code_deletions": 206
-    }
+    return {"name": "James Agnew", "username": "jamesagnew", "avatar": "https://avatars3.githubusercontent.com/u/3465117?v=4", "bio": null, "email": "jamesagnew@gmail.com", "location": "Toronto, Canada", "company": "HAPI // Smile CDR // University Health Network", "num_of_java_repos": 10, "avg_stars_count_per_repo": 87.3, "closed_issue_ratio": 0.6767810026385225, "avg_fork_count": 74.8, "has_maven_gradle": true, "has_readme": true, "uses_branches": true, "top_dependencies": [["hapi-fhir-base", 47], ["logback-classic", 42], ["javax.servlet-api", 30], ["hapi-fhir-structures-dstu3", 30], ["jetty-servlet", 28], ["jetty-server", 26], ["jetty-webapp", 25], ["maven-deploy-plugin", 24], ["thymeleaf", 24], ["jetty-servlets", 23]], "overall_score": 93, "scores": {"versatility": 92, "best_practices": 100, "github_activity": 89, "community_score": 49}, "community_scores": {"comments_quality_score": 57, "pr_quality_score": 40}, "avg_response_time": 5.6, "code_additions": 4175155, "code_deletions": 2158123}
 }
 
 function sampleCompareUsers() {

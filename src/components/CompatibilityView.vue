@@ -172,7 +172,8 @@ export default {
   },
   methods: {
     compare() {
-      this.$store.dispatch("compareUsers", this.queryA, this.queryB);
+      console.log(this.queryA, this.queryB)
+      this.$store.dispatch("compareUsers", [this.queryA, this.queryB]);
     },
     chooseSaved(modal, id) {
       if (modal == "chooseSavedB") {
