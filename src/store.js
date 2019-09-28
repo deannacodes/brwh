@@ -52,8 +52,9 @@ export const store = new Vuex.Store({
             let query = "http://localhost:5000/?user=" + id
             Axios.get(query)
                 .then((response) => {
+                    console.log(response.data)
                     if (response.message != "Not Found") {
-                        commit('setViewingUser', response)
+                        commit('setViewingUser', JSON.parse(response.data))
                     }
                     commit('setLoading', false)
                 })
