@@ -8,7 +8,7 @@ const base = "https://api.github.com/"
 export const store = new Vuex.Store({
     state: {
         favorites: sampleFavorites(),
-        menu: "Compatibility",
+        menu: "Search",
         loading: false,
         viewingUser: sampleUser(),
         compareUser: sampleCompareUsers()
@@ -72,77 +72,76 @@ export const store = new Vuex.Store({
 
 
 function sampleFavorites() {
-    let user1 = { id: "jsmith123", name: "John Smith", location: "Tokyo, JP", score: 76, img: "https://images.pexels.com/photos/736716/pexels-photo-736716.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", company: "Bizreach" }
-    let user2 = { id: "jane_doe_github", name: "Jane Doe", location: "Seattle, WA", score: 80, img: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", company: "Google" }
-    let user3 = { id: "mscott45", name: "Michael Scott", location: "Scranton, PA", score: 55, img: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", company: "Dunder Mifflin" }
+    let user1 = sampleUser()
+    let user2 = sampleUser()
+    let user3 = sampleUser()
     return [user1, user2, user3]
 }
 
 function sampleUser() {
     return {
-        "data": {
-            "login": "deannacodes",
-            "id": 33584568,
-            "node_id": "MDQ6VXNlcjMzNTg0NTY4",
-            "avatar_url": "https://avatars0.githubusercontent.com/u/33584568?v=4",
-            "gravatar_id": "",
-            "url": "https://api.github.com/users/deannacodes",
-            "html_url": "https://github.com/deannacodes",
-            "followers_url": "https://api.github.com/users/deannacodes/followers",
-            "following_url": "https://api.github.com/users/deannacodes/following{/other_user}",
-            "gists_url": "https://api.github.com/users/deannacodes/gists{/gist_id}",
-            "starred_url": "https://api.github.com/users/deannacodes/starred{/owner}{/repo}",
-            "subscriptions_url": "https://api.github.com/users/deannacodes/subscriptions",
-            "organizations_url": "https://api.github.com/users/deannacodes/orgs",
-            "repos_url": "https://api.github.com/users/deannacodes/repos",
-            "events_url": "https://api.github.com/users/deannacodes/events{/privacy}",
-            "received_events_url": "https://api.github.com/users/deannacodes/received_events",
-            "type": "User",
-            "site_admin": false,
-            "name": "Deanna",
-            "company": "Bluebeam, Inc",
-            "blog": "deanna.codes",
-            "location": null,
-            "email": "deanna.streffer@gmail.com",
-            "hireable": null,
-            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "public_repos": 12,
-            "public_gists": 0,
-            "followers": 0,
-            "following": 0,
-            "created_at": "2017-11-11T22:36:36Z",
-            "updated_at": "2019-09-07T15:08:13Z"
-        },
-        "status": 200,
-        "statusText": "OK",
-        "headers": {
-            "x-ratelimit-remaining": "53",
-            "x-github-media-type": "github.v3",
-            "last-modified": "Sat, 07 Sep 2019 15:08:13 GMT",
-            "etag": "W/\"288c28fc9ba38428ffaf04835a3fae22\"",
-            "content-type": "application/json; charset=utf-8",
-            "cache-control": "public, max-age=60, s-maxage=60",
-            "x-ratelimit-reset": "1569595592",
-            "x-ratelimit-limit": "60"
-        },
-        "config": {
-            "url": "https://api.github.com/users/deannacodes",
-            "method": "get",
-            "headers": {
-                "Accept": "application/json, text/plain, */*"
-            },
-            "transformRequest": [
-                null
+        "name": "James Agnew",
+        "username": "jamesagnew",
+        "avatar": "https://avatars3.githubusercontent.com/u/3465117?v=4",
+        "bio": null,
+        "email": "jamesagnew@gmail.com",
+        "location": "Toronto, Canada",
+        "company": "HAPI // Smile CDR // University Health Network",
+        "num_of_java_repos": 10,
+        "avg_stars_count_per_repo": 87.4,
+        "closed_issue_ratio": 0.6767810026385225,
+        "avg_fork_count": 74.8,
+        "has_maven_gradle": true,
+        "has_readme": true,
+        "uses_branches": true,
+        "top_dependencies": [
+            [
+                "hapi-fhir-base",
+                47
             ],
-            "transformResponse": [
-                null
+            [
+                "logback-classic",
+                42
             ],
-            "timeout": 0,
-            "xsrfCookieName": "XSRF-TOKEN",
-            "xsrfHeaderName": "X-XSRF-TOKEN",
-            "maxContentLength": -1
-        },
-        "request": {}
+            [
+                "javax.servlet-api",
+                30
+            ],
+            [
+                "hapi-fhir-structures-dstu3",
+                30
+            ],
+            [
+                "jetty-servlet",
+                28
+            ],
+            [
+                "jetty-server",
+                26
+            ],
+            [
+                "jetty-webapp",
+                25
+            ],
+            [
+                "maven-deploy-plugin",
+                24
+            ],
+            [
+                "thymeleaf",
+                24
+            ],
+            [
+                "jetty-servlets",
+                23
+            ]
+        ],
+        "overall_score": 0.9385660456114787,
+        "scores": {
+            "versatility": 0.9234378026481879,
+            "best_practices": 1.0,
+            "github_activity": 0.8922603341862484
+        }
     }
 }
 

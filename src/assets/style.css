@@ -2,6 +2,10 @@ body {
     height: 100vh
 }
 
+p {
+    word-break: break-all;
+}
+
 div, a, button {
     transition: all 0.2s ease-in-out;
     -webkit-transition: all 0.2s ease-in-out;
@@ -25,7 +29,10 @@ div, a, button {
     padding: 10px 20px;
     background: #4eaba8;
     color: white;
-    font-size: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    text-transform: uppercase;
 }
 
 .container {
@@ -176,7 +183,8 @@ button:disabled:hover {
     font-size: 30px;
     font-weight: lighter;
     align-self: flex-end;
-    color: #444
+    color: #444;
+    margin-top: -4px;
 }
 
 .compare-page {
@@ -201,4 +209,40 @@ button:disabled:hover {
 .comparison-main {
     background-color: #efefef;
     height:100%;
+}
+
+.title-bar .svg-inline--fa {
+    font-size: 20px;
+    margin-top: 2px;
+    padding-right: 10px;
+}
+
+.score-card {
+    background: white;
+    margin: 30px;
+    padding: 30px;
+    max-width: 30%;
+    width: 30%;
+
+    display: inline-block;
+    text-align: left;
+
+}
+
+.score-card .svg-inline--fa {
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.score-card-main {
+    max-width: 70%;
+    width: 70%;
+}
+
+.score-name {
+    text-transform: capitalize;
+}
+
+.data-holder {
+    text-align: center;
 }

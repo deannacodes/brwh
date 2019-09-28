@@ -187,8 +187,7 @@ export default {
       }
     },
     addToFavorites(user) {
-      //TODO - hard-coded score
-      let u = { id: user.username, name: user.name, location: user.location, score: 76, img: user.avatar, company: user.company }
+      let u = { id: user.username, name: user.name, location: user.location, score: user.score, img: user.avatar, company: user.company }
       this.$store.commit("addTeam", u);
     },
     isAdded(id) {

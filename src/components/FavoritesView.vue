@@ -1,4 +1,3 @@
-
 <template>
   <div class="container page-content">
     <h2>{{title}}</h2>
@@ -7,12 +6,12 @@
       <div class="fav-user row" v-for="user in favorites" :key="user.id">
         <div class="col-md-3">
           <div class="pfp">
-            <img :src="user.img" />
+            <img :src="user.avatar" />
           </div>
         </div>
         <div class="col-md-6">
-          <h4>{{user.id}}</h4>
-          <h4 class="subtitle">Developer Score: {{user.score}}</h4>
+          <h4>{{user.username}}</h4>
+          <h4 class="subtitle">Developer Score: {{user.overall_score}}</h4>
           <hr />
           <h6>{{user.name}}</h6>
           <h6>{{user.company}}</h6>

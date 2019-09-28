@@ -33,24 +33,28 @@
         <div class="clear-search" v-on:click="clearUser">
           <font-awesome-icon icon="times" />
         </div>
-        <img :src="viewingUser.data.avatar_url" />
-        <h4>{{viewingUser.data.login}}</h4>
-        <h6 v-if="viewingUser.data.name != null">{{viewingUser.data.name}}</h6>
-        <h6 v-if="viewingUser.data.company != null">{{viewingUser.data.company}}</h6>
-        <h6 v-if="viewingUser.data.location != null">{{viewingUser.data.location}}</h6>
-        <p v-if="viewingUser.data.bio != null" style="padding: 20px 0;">{{viewingUser.data.bio}}</p>
-        <button class="btn btn-sec" v-if="viewingUser.data.email != null">
+        <img :src="viewingUser.avatar" />
+        <h4>{{viewingUser.username}}</h4>
+        <h6 v-if="viewingUser.name != null">{{viewingUser.name}}</h6>
+        <h6 v-if="viewingUser.company != null">{{viewingUser.company}}</h6>
+        <h6 v-if="viewingUser.location != null">{{viewingUser.location}}</h6>
+        <p v-if="viewingUser.bio != null" style="padding: 20px 0;">{{viewingUser.bio}}</p>
+        <button class="btn btn-sec" v-if="viewingUser.email != null">
           <font-awesome-icon icon="envelope" />Contact
         </button>
-        <button v-if="isAdded(viewingUser.data.login)" style="margin-top: 15px;" class="btn btn-main" disabled>
+        <button v-if="isAdded(viewingUser.username)" style="margin-top: 15px;" class="btn btn-main" disabled>
           <font-awesome-icon icon="user-check" />Saved
         </button> 
-        <button v-else @click="addToFavorites(viewingUser.data)" style="margin-top: 15px;" class="btn btn-main">
+        <button v-else @click="addToFavorites(viewingUser)" style="margin-top: 15px;" class="btn btn-main">
           <font-awesome-icon icon="user-plus" />Save
         </button>
       </div>
       <div class="col-md-10 profile-main">
-        <div class="row"></div>
+        <div class="row">
+
+          <UserDataView/>
+
+        </div>
       </div>
     </template>
   </div>
@@ -59,6 +63,7 @@
 
 <script>
 import { mapState } from "vuex";
+import UserDataView from "./UserDataView.vue";
 
 export default {
   name: "UserView",
@@ -88,14 +93,17 @@ export default {
       this.$store.commit("addTeam", u);
     },
     isAdded(id) {
-      return (this.favorites.filter(x => x.id == id).length > 0)
+      return (this.favorites.filter(x => x.username == id).length > 0)
     }
   },
   computed: mapState({
     favorites: "favorites",
     menu: "menu",
     viewingUser: "viewingUser"
-  })
+  }),
+  components: {
+    UserDataView
+  }
 };
 </script>
 

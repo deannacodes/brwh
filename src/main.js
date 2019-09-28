@@ -23,6 +23,10 @@ import { faBalanceScale } from '@fortawesome/free-solid-svg-icons'
 import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons'
 import { faUserCheck } from '@fortawesome/free-solid-svg-icons'
 import { faJava } from '@fortawesome/free-brands-svg-icons'
+import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
+import { faSquare } from '@fortawesome/free-solid-svg-icons'
+library.add(faSquare)
+library.add(faCheckSquare)
 library.add(faJava)
 library.add(faUserCheck)
 library.add(faExchangeAlt)
