@@ -57,7 +57,7 @@ export const store = new Vuex.Store({
                     }
                     commit('setLoading', false)
                 })
-                .catch(commit('setLoading', false)()
+                .catch(commit('setLoading', false))
         },
         compareUsers({ commit }, idA, idB) {
             commit('setLoading', true)
@@ -68,7 +68,7 @@ export const store = new Vuex.Store({
                     commit('setCompareUser',users)
                     commit('setCompatibilityScore', response.similarity)
                     commit('setLoading', false)
-                })
+                }).catch(commit('setLoading', false))
 
         }
     }
