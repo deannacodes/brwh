@@ -12,7 +12,7 @@
             start-color="#4eaba8"
             stop-color="#489290"
             inner-stroke-color="#efefef"
-            stroke-width="20"
+            stroke-width=20
           >
             <h1>{{viewingUser.overall_score}}</h1>
           </radial-progress-bar>
@@ -33,7 +33,7 @@
                 start-color="#4eaba8"
                 stop-color="#489290"
                 inner-stroke-color="#efefef"
-                stroke-width="5"
+                stroke-width=5
               >
                 <h6>{{score}}</h6>
               </radial-progress-bar>
@@ -116,7 +116,7 @@
                 start-color="#4eaba8"
                 stop-color="#489290"
                 inner-stroke-color="#efefef"
-                stroke-width="5"
+                stroke-width=5
               >
                 <h6>{{viewingUser.community_scores.comments_quality_score}}</h6>
               </radial-progress-bar>
