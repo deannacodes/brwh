@@ -10,7 +10,7 @@ export const store = new Vuex.Store({
         loading: false,
         viewingUser: null,
         compareUser: null,
-        compatibilityScore: 99
+        compatibilityScore: null
     },
     mutations: {
         addTeam(state, user) {
@@ -67,7 +67,7 @@ export const store = new Vuex.Store({
                 .then((response) => {
                     let users = [response.data.userA, response.data.userB]
                     commit('setCompareUser',users)
-                    commit('setCompatibilityScore', JSON.parse(response.data).similarity)
+                    commit('setCompatibilityScore', response.data.similarity)
                     commit('setLoading', false)
                 }).catch(commit('setLoading', false))
 
