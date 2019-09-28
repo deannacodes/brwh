@@ -48,7 +48,6 @@ export const store = new Vuex.Store({
     },
     actions: {
         searchUser({ commit }, id) {
-            commit('setLoading', true)
             let query = "http://localhost:5000/?user=" + id
             Axios.get(query)
                 .then((response) => {
@@ -61,13 +60,13 @@ export const store = new Vuex.Store({
                 .catch(commit('setLoading', false))
         },
         compareUsers({ commit }, idA, idB) {
-            commit('setLoading', true)
             let query = "http://localhost:5000/compare?userA=" + idA + "&userB=" + idB
+            console.log("Reached");
             Axios.get(query)
                 .then((response) => {
-                    let users = [response.userA, response.userB]
+                    let users = [JSON.parse(response.data).userA, JSON.parse(response.data).userB]
                     commit('setCompareUser',users)
-                    commit('setCompatibilityScore', response.similarity)
+                    commit('setCompatibilityScore', JSON.parse(response.data).similarity)
                     commit('setLoading', false)
                 }).catch(commit('setLoading', false))
 

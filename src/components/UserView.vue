@@ -79,11 +79,7 @@ export default {
   methods: {
     searchUser() {
       this.$store.dispatch("searchUser", this.query);
-      if (this.viewingUser == null) {
-        this.error = "User not found";
-      } else {
-        this.error = "";
-      }
+      this.$store.commit('setLoading', true)
     },
     clearUser() {
       this.$store.commit("clearViewingUser");

@@ -53,7 +53,7 @@
             </b-button>
           </div>
         </div>
-        <button class="btn btn-main" :click="compareUsers" style="margin-top:30px;">
+        <button class="btn btn-main" @click="compareUsers" style="margin-top:30px;">
           <font-awesome-icon icon="balance-scale" />Compare
         </button>
       </div>
@@ -177,11 +177,7 @@ export default {
   methods: {
     compareUsers() {
       this.$store.dispatch("compareUsers", this.queryA, this.queryB);
-      if (this.compUser == null) {
-        this.error = "One or more users not found";
-      } else {
-        this.error = "";
-      }
+      this.$store.commit('setLoading', true)
     },
     chooseSaved(modal, id) {
       if (modal == "chooseSavedB") {
