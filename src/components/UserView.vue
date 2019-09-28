@@ -42,7 +42,10 @@
         <button class="btn btn-sec" v-if="viewingUser.data.email != null">
           <font-awesome-icon icon="envelope" />Contact
         </button>
-        <button style="margin-top: 15px;" class="btn btn-main">
+        <button v-if="isAdded(viewingUser.data.login)" style="margin-top: 15px;" class="btn btn-main" disabled>
+          <font-awesome-icon icon="user-check" />Saved
+        </button> 
+        <button v-else @click="addToFavorites(viewingUser.data)" style="margin-top: 15px;" class="btn btn-main">
           <font-awesome-icon icon="user-plus" />Save
         </button>
       </div>
@@ -78,6 +81,14 @@ export default {
     clearUser() {
       this.$store.commit("clearViewingUser");
       this.error = "";
+    },
+    addToFavorites(user) {
+      //TODO - hard-coded score
+      let u = { id: user.login, name: user.name, location: user.location, score: 76, img: user.avatar_url, company: user.company }
+      this.$store.commit("addTeam", u);
+    },
+    isAdded(id) {
+      return (this.favorites.filter(x => x.id == id).length > 0)
     }
   },
   computed: mapState({

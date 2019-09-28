@@ -77,18 +77,31 @@ div, a, button {
     -webkit-transition: all 0.2s ease-in-out;
 }
 
+button:disabled:hover {
+    opacity: 0.65;
+}
+
 .btn-main {
     background-color: #4eaba8;
     color: white;
 }
 
-.btn-delete {
+.btn-delete  {
     background-color: #ba1e38;
     color: white;
 }
 
+.btn-delete .svg-inline--fa {
+    padding: 0;
+    margin: 0;
+}
+
 .btn-sec {
     background-color: #ddd;
+}
+
+.btn-sec:hover {
+    color: #333
 }
 
 .btn-sec-small {
@@ -125,6 +138,10 @@ div, a, button {
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+.search-page {
+    margin-top: -15%;
 }
 
 .user-page-view {

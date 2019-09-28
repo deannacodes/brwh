@@ -12,7 +12,7 @@ Vue.use(Vuex)
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons'
+import { faEllipsisV, faUser } from '@fortawesome/free-solid-svg-icons'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faNewspaper } from '@fortawesome/free-solid-svg-icons'
@@ -21,6 +21,8 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import { faBalanceScale } from '@fortawesome/free-solid-svg-icons'
 import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons'
+import { faUserCheck } from '@fortawesome/free-solid-svg-icons'
+library.add(faUserCheck)
 library.add(faExchangeAlt)
 library.add(faBalanceScale)
 library.add(faUserPlus)

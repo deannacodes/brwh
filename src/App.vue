@@ -38,7 +38,8 @@
         </div>
         <UserView v-if="(menu == 'Search')" />
         <FavoritesView v-if="(menu == 'Favorites')" />
-        <CompatibilityView v-if="(menu == 'Compatibility')"/>
+        <CompatibilityView v-if="(menu == 'Compatibility')"/>        
+        <LoadingView v-if="(menu == 'Loading')"/>
       </div>
     </div>
   </div>
@@ -49,6 +50,7 @@ import { mapState } from "vuex";
 import FavoritesView from "./components/FavoritesView.vue";
 import UserView from "./components/UserView.vue";
 import CompatibilityView from "./components/CompatibilityView.vue";
+import LoadingView from "./components/LoadingView.vue";
 
 export default {
   name: "app",
@@ -74,7 +76,8 @@ export default {
   components: {
     FavoritesView,
     UserView,
-    CompatibilityView
+    CompatibilityView,
+    LoadingView
   }
 };
 </script>
