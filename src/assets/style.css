@@ -239,8 +239,8 @@ button:disabled:hover {
 }
 
 .score-card-main {
-    max-width: 70%;
-    width: 70%;
+    max-width: 80%;
+    width: 80%;
 }
 
 .score-card-main .radial-progress-container {
@@ -253,6 +253,8 @@ button:disabled:hover {
 
 .score-name {
     text-transform: capitalize;
+    display: flex;
+    align-items: center;
 }
 
 .data-holder {

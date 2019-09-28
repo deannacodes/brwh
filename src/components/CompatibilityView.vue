@@ -62,10 +62,12 @@
       <div class="col-md-2 profile-sidebar" style="padding-top: 30px;">
         <img :src="compareUser[0].avatar" />
         <h4>{{compareUser[0].username}}</h4>
+        <hr />
         <h6 v-if="compareUser[0].name != null">{{compareUser[0].name}}</h6>
         <h6 v-if="compareUser[0].company != null">{{compareUser[0].company}}</h6>
         <h6 v-if="compareUser[0].location != null">{{compareUser[0].location}}</h6>
         <p v-if="compareUser[0].bio != null" style="padding: 20px 0;">{{compareUser[0].bio}}</p>
+        <hr />
         <button class="btn btn-sec" v-if="compareUser[0].email != null">
           <font-awesome-icon icon="envelope" />Contact
         </button>
@@ -87,15 +89,19 @@
         </button>
       </div>
       <div class="col-md-8 comparison-main">
-        <div class="row"></div>
+        <div class="row">
+          <UserCompareView />
+        </div>
       </div>
       <div class="col-md-2 profile-sidebar" style="padding-top: 30px;">
         <img :src="compareUser[1].avatar" />
         <h4>{{compareUser[1].username}}</h4>
+        <hr />
         <h6 v-if="compareUser[1].name != null">{{compareUser[1].name}}</h6>
         <h6 v-if="compareUser[1].company != null">{{compareUser[1].company}}</h6>
         <h6 v-if="compareUser[1].location != null">{{compareUser[1].location}}</h6>
         <p v-if="compareUser[1].bio != null" style="padding: 20px 0;">{{compareUser[1].bio}}</p>
+        <hr />
         <button class="btn btn-sec" v-if="compareUser[1].email != null">
           <font-awesome-icon icon="envelope" />Contact
         </button>
@@ -151,12 +157,12 @@
         </div>
       </form>
     </b-modal>
-
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import UserCompareView from "./UserCompareView.vue";
 
 export default {
   name: "CompatibilityView",
@@ -187,19 +193,29 @@ export default {
       }
     },
     addToFavorites(user) {
-      let u = { id: user.username, name: user.name, location: user.location, score: user.score, img: user.avatar, company: user.company }
+      let u = {
+        id: user.username,
+        name: user.name,
+        location: user.location,
+        score: user.score,
+        img: user.avatar,
+        company: user.company
+      };
       this.$store.commit("addTeam", u);
     },
     isAdded(id) {
-      return (this.favorites.filter(x => x.id == id).length > 0)
+      return this.favorites.filter(x => x.id == id).length > 0;
     }
   },
-  
+
   computed: mapState({
     favorites: "favorites",
     menu: "menu",
     compareUser: "compareUser"
-  })
+  }),
+  components: {
+    UserCompareView
+  }
 };
 </script>
 

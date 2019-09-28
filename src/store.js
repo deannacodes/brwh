@@ -11,7 +11,8 @@ export const store = new Vuex.Store({
         menu: "Search",
         loading: false,
         viewingUser: sampleUser(),
-        compareUser: sampleCompareUsers()
+        compareUser: sampleCompareUsers(),
+        compatibilityScore: 99
     },
     mutations: {
         addTeam(state, user) {
@@ -41,6 +42,7 @@ export const store = new Vuex.Store({
         },
         clearCompareUser(state) {
             state.compareUser = null
+            state.compatibilityScore = null
         }
     },
     actions: {

@@ -35,10 +35,12 @@
         </div>
         <img :src="viewingUser.avatar" />
         <h4>{{viewingUser.username}}</h4>
+        <hr>
         <h6 v-if="viewingUser.name != null">{{viewingUser.name}}</h6>
         <h6 v-if="viewingUser.company != null">{{viewingUser.company}}</h6>
         <h6 v-if="viewingUser.location != null">{{viewingUser.location}}</h6>
         <p v-if="viewingUser.bio != null" style="padding: 20px 0;">{{viewingUser.bio}}</p>
+        <hr>
         <button class="btn btn-sec" v-if="viewingUser.email != null">
           <font-awesome-icon icon="envelope" />Contact
         </button>
@@ -88,8 +90,7 @@ export default {
       this.error = "";
     },
     addToFavorites(user) {
-      //TODO - hard-coded score
-      let u = { id: user.login, name: user.name, location: user.location, score: 76, img: user.avatar_url, company: user.company }
+      let u = { id: user.login, name: user.name, location: user.location, score: user.score, img: user.avatar_url, company: user.company }
       this.$store.commit("addTeam", u);
     },
     isAdded(id) {

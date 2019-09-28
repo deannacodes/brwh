@@ -2,33 +2,44 @@
 <template>
   <div class="container-fluid data-holder" style="background: none">
     <div class="score-card score-card-main">
-      <h1>Overall Score</h1>
-      <radial-progress-bar :diameter="300"
-                       :completed-steps="viewingUser.overall_score"
-                       :total-steps="1"
-                       start-color="#4eaba8"
-                       stop-color="#489290"
-                       inner-stroke-color="#efefef"
-                       stroke-width="20">
-   <h1>{{viewingUser.overall_score}}</h1>
-  </radial-progress-bar>
-      
-      <hr />
-      <div class="row" v-for="(score, type) in viewingUser.scores" v-bind:key="type">
-        <div class="col-md-9 score-name"><h5>{{ type }}</h5></div>
-        <div class="col-md-3">      <radial-progress-bar :diameter="65"
-                       :completed-steps="score"
-                       :total-steps="1"
-                       start-color="#4eaba8"
-                       stop-color="#489290"
-                       inner-stroke-color="#efefef"
-                       stroke-width="5">
-   <h6>{{score}}</h6>
-  </radial-progress-bar></div>
+      <div class="row">
+        <div class="col-md-6">
+          <h1>Overall Score</h1>
+          <radial-progress-bar
+            :diameter="200"
+            :completed-steps="viewingUser.overall_score"
+            :total-steps="100"
+            start-color="#4eaba8"
+            stop-color="#489290"
+            inner-stroke-color="#efefef"
+            stroke-width="20"
+          >
+            <h1>{{viewingUser.overall_score}}</h1>
+          </radial-progress-bar>
+        </div>
+        <div class="col-md-6 align-self-center justify-self-center" style="border-left: 1px solid #efefef; padding-left: 30px; ">
+          <div class="row" v-for="(score, type) in viewingUser.scores" v-bind:key="type">
+            <div class="col-md-9 score-name">
+              <h5>{{ type }}</h5>
+            </div>
+            <div class="col-md-3">
+              <radial-progress-bar
+                :diameter="65"
+                :completed-steps="score"
+                :total-steps="100"
+                start-color="#4eaba8"
+                stop-color="#489290"
+                inner-stroke-color="#efefef"
+                stroke-width="5"
+              >
+                <h6>{{score}}</h6>
+              </radial-progress-bar>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <br />
 
     <div class="score-card">
       <h3>Java Repository Stats</h3>
@@ -82,24 +93,13 @@
 
 <script>
 import { mapState } from "vuex";
-import RadialProgressBar from 'vue-radial-progress'
+import RadialProgressBar from "vue-radial-progress";
 
 export default {
   name: "UserView",
   data() {
     return {
-      error: "",
-      query: "",
-      searchTitle: "Search Github Users"
     };
-  },
-  methods: {
-      progress(event,progress,stepValue){
-        console.log(stepValue);
-      },
-      progress_end(event){
-        console.log("Circle progress end");
-      }
   },
   computed: mapState({
     viewingUser: "viewingUser"
