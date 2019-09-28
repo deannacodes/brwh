@@ -61,7 +61,7 @@ export const store = new Vuex.Store({
         },
         compareUsers({ commit }, idA, idB) {
             commit('setLoading', true)
-            let query = "http://localhost:5000/?userA=" + idA + "&userB=" + idB
+            let query = "http://localhost:5000/compare?userA=" + idA + "&userB=" + idB
             Axios.get(query)
                 .then((response) => {
                     let users = [response.userA, response.userB]
