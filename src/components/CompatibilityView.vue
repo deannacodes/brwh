@@ -173,6 +173,7 @@ export default {
   methods: {
     compare() {
       console.log(this.queryA, this.queryB)
+      this.$store.commit('setLoading', true)
       this.$store.dispatch("compareUsers", [this.queryA, this.queryB]);
     },
     chooseSaved(modal, id) {
