@@ -198,3 +198,7 @@ button:disabled:hover {
     margin: 15px 0;
 }
 
+.comparison-main {
+    background-color: #efefef;
+    height:100%;
+}

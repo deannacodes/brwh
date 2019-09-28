@@ -1,58 +1,135 @@
 <template>
   <div class="compare-page">
-    <div class="compare-content">
-      <div v-if="error != ''" class="alert alert-danger fade show" role="alert">{{ error }}</div>
-      <h1>{{title}}</h1>
-      <div class="input-group flex-nowrap" style="margin-top:30px;">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="addon-wrapping">@</span>
+    <template v-if="compareUser == null">
+      <div class="compare-content">
+        <div v-if="error != ''" class="alert alert-danger fade show" role="alert">{{ error }}</div>
+        <h1>{{title}}</h1>
+        <div class="input-group flex-nowrap" style="margin-top:30px;">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="addon-wrapping">@</span>
+          </div>
+          <input
+            type="text"
+            class="form-control search-textbox"
+            placeholder="Username"
+            aria-label="Username"
+            aria-describedby="addon-wrapping"
+            v-model="queryA"
+          />
+          <div class="input-group-append">
+            <b-button
+              v-b-modal.chooseSavedA
+              class="btn btn-sec-small"
+              type="button"
+              id="button-addon1"
+            >
+              <font-awesome-icon icon="star" />Saved Users
+            </b-button>
+          </div>
         </div>
-        <input
-          type="text"
-          class="form-control search-textbox"
-          placeholder="Username"
-          aria-label="Username"
-          aria-describedby="addon-wrapping"
-          v-model="queryA"
-        />
-        <div class="input-group-append">
-          <b-button v-b-modal.chooseSavedA class="btn btn-sec-small" type="button" id="button-addon1">
-            <font-awesome-icon icon="star" />Saved Users
-          </b-button>
+        <div class="compare-icon">
+          <font-awesome-icon icon="exchange-alt" />
         </div>
+        <div class="input-group flex-nowrap">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="addon-wrapping">@</span>
+          </div>
+          <input
+            type="text"
+            class="form-control search-textbox"
+            placeholder="Username"
+            aria-label="Username"
+            aria-describedby="addon-wrapping"
+            v-model="queryB"
+          />
+          <div class="input-group-append">
+            <b-button
+              v-b-modal.chooseSavedB
+              class="btn btn-sec-small"
+              type="button"
+              id="button-addon2"
+            >
+              <font-awesome-icon icon="star" />Saved Users
+            </b-button>
+          </div>
+        </div>
+        <button class="btn btn-main" style="margin-top:30px;">
+          <font-awesome-icon icon="balance-scale" />Compare
+        </button>
       </div>
-      <div class="compare-icon">
-        <font-awesome-icon icon="exchange-alt" />
+    </template>
+    <template v-else>
+      <div class="col-md-2 profile-sidebar" style="padding-top: 30px;">
+        <img :src="compareUser[0].avatar" />
+        <h4>{{compareUser[0].username}}</h4>
+        <h6 v-if="compareUser[0].name != null">{{compareUser[0].name}}</h6>
+        <h6 v-if="compareUser[0].company != null">{{compareUser[0].company}}</h6>
+        <h6 v-if="compareUser[0].location != null">{{compareUser[0].location}}</h6>
+        <p v-if="compareUser[0].bio != null" style="padding: 20px 0;">{{compareUser[0].bio}}</p>
+        <button class="btn btn-sec" v-if="compareUser[0].email != null">
+          <font-awesome-icon icon="envelope" />Contact
+        </button>
+        <button
+          v-if="isAdded(compareUser[0].username)"
+          style="margin-top: 15px;"
+          class="btn btn-main"
+          disabled
+        >
+          <font-awesome-icon icon="user-check" />Saved
+        </button>
+        <button
+          v-else
+          @click="addToFavorites(compareUser[0])"
+          style="margin-top: 15px;"
+          class="btn btn-main"
+        >
+          <font-awesome-icon icon="user-plus" />Save
+        </button>
       </div>
-      <div class="input-group flex-nowrap">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="addon-wrapping">@</span>
-        </div>
-        <input
-          type="text"
-          class="form-control search-textbox"
-          placeholder="Username"
-          aria-label="Username"
-          aria-describedby="addon-wrapping"
-          v-model="queryB"
-        />
-        <div class="input-group-append">
-          <b-button v-b-modal.chooseSavedB class="btn btn-sec-small" type="button" id="button-addon2">
-            <font-awesome-icon icon="star" />Saved Users
-          </b-button>
-        </div>
+      <div class="col-md-8 comparison-main">
+        <div class="row"></div>
       </div>
-      <button class="btn btn-main" style="margin-top:30px;" v-on:click="searchUser">
-        <font-awesome-icon icon="balance-scale" />Compare
-      </button>
-    </div>
+      <div class="col-md-2 profile-sidebar" style="padding-top: 30px;">
+        <img :src="compareUser[1].avatar" />
+        <h4>{{compareUser[1].username}}</h4>
+        <h6 v-if="compareUser[1].name != null">{{compareUser[1].name}}</h6>
+        <h6 v-if="compareUser[1].company != null">{{compareUser[1].company}}</h6>
+        <h6 v-if="compareUser[1].location != null">{{compareUser[1].location}}</h6>
+        <p v-if="compareUser[1].bio != null" style="padding: 20px 0;">{{compareUser[1].bio}}</p>
+        <button class="btn btn-sec" v-if="compareUser[1].email != null">
+          <font-awesome-icon icon="envelope" />Contact
+        </button>
+        <button
+          v-if="isAdded(compareUser[1].username)"
+          style="margin-top: 15px;"
+          class="btn btn-main"
+          disabled
+        >
+          <font-awesome-icon icon="user-check" />Saved
+        </button>
+        <button
+          v-else
+          @click="addToFavorites(compareUser[1])"
+          style="margin-top: 15px;"
+          class="btn btn-main"
+        >
+          <font-awesome-icon icon="user-plus" />Save
+        </button>
+      </div>
+    </template>
 
     <b-modal ref="cs" id="chooseSavedA" title="Saved Users" hide-footer>
       <form>
         <div class="form-group">
           <label for="name">Select a user from your saved users.</label>
           <div class="list-group list-group-flush">
-            <a v-for="user in favorites" v-bind:key="user.id" @click="chooseSaved('chooseSavedA', user.id)" href="#" class="list-group-item list-group-item-action">{{user.id}}</a>
+            <a
+              v-for="user in favorites"
+              v-bind:key="user.id"
+              @click="chooseSaved('chooseSavedA', user.id)"
+              href="#"
+              class="list-group-item list-group-item-action"
+            >{{user.id}}</a>
           </div>
         </div>
       </form>
@@ -63,7 +140,13 @@
         <div class="form-group">
           <label for="name">Select a user from your saved users.</label>
           <div class="list-group list-group-flush">
-            <a v-for="user in favorites" v-bind:key="user.id" @click="chooseSaved('chooseSavedB', user.id)" href="#" class="list-group-item list-group-item-action">{{user.id}}</a>
+            <a
+              v-for="user in favorites"
+              v-bind:key="user.id"
+              @click="chooseSaved('chooseSavedB', user.id)"
+              href="#"
+              class="list-group-item list-group-item-action"
+            >{{user.id}}</a>
           </div>
         </div>
       </form>
@@ -86,27 +169,37 @@ export default {
     };
   },
   methods: {
-    searchUser() {
-      this.$store.dispatch("searchUser", this.query);
-      if (this.viewingUser == null) {
-        this.error = "User not found";
+    compareUsers() {
+      this.$store.dispatch("compareUsers", this.queryA, this.queryB);
+      if (this.compUser == null) {
+        this.error = "One or more users not found";
       } else {
         this.error = "";
       }
     },
     chooseSaved(modal, id) {
-      if (modal == 'chooseSavedB') {
-        this.queryB = id
-        this.$refs['cs'].hide("chooseSavedB")
+      if (modal == "chooseSavedB") {
+        this.queryB = id;
+        this.$refs["cs"].hide("chooseSavedB");
       } else {
-        this.queryA = id
-        this.$refs['cs'].hide("chooseSavedA")
+        this.queryA = id;
+        this.$refs["cs"].hide("chooseSavedA");
       }
+    },
+    addToFavorites(user) {
+      //TODO - hard-coded score
+      let u = { id: user.username, name: user.name, location: user.location, score: 76, img: user.avatar, company: user.company }
+      this.$store.commit("addTeam", u);
+    },
+    isAdded(id) {
+      return (this.favorites.filter(x => x.id == id).length > 0)
     }
   },
+  
   computed: mapState({
     favorites: "favorites",
-    menu: "menu"
+    menu: "menu",
+    compareUser: "compareUser"
   })
 };
 </script>

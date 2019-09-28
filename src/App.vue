@@ -2,7 +2,7 @@
   <div class="body">
     <div class="container-fluid">
       <div class="d-flex row title-bar">
-        {{ title }}
+        <font-awesome-icon icon="java" />{{ title }}
       </div>
     </div>
 
@@ -36,10 +36,10 @@
             </a>
           </div>
         </div>
-        <UserView v-if="(menu == 'Search')" />
-        <FavoritesView v-if="(menu == 'Favorites')" />
-        <CompatibilityView v-if="(menu == 'Compatibility')"/>        
-        <LoadingView v-if="(menu == 'Loading')"/>
+        <UserView v-if="(menu == 'Search') && (loading != true)" />
+        <FavoritesView v-if="(menu == 'Favorites') && (loading != true)" />
+        <CompatibilityView v-if="(menu == 'Compatibility') && (loading != true)"/>        
+        <LoadingView v-if="(loading == true)"/>
       </div>
     </div>
   </div>
@@ -60,7 +60,8 @@ export default {
     };
   },
   computed: mapState({
-    menu: "menu"
+    menu: "menu",
+    loading: "loading"
   }),
   methods: {
     search() {

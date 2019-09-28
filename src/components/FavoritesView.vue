@@ -19,7 +19,7 @@
           <h6>{{user.location}}</h6>
         </div>
         <div class="col-md-3">
-          <button style="margin-right: 10px" class="btn btn-main">
+          <button style="margin-right: 10px" class="btn btn-main" v-on:click="viewUser(user)">
             <font-awesome-icon icon="newspaper" /> Report
           </button>
           <button class="btn btn-delete" v-on:click="del(user.id)">
@@ -44,6 +44,10 @@ export default {
   methods: {
     del(id) {
       this.$store.commit("deleteTeam", id);
+    },
+    viewUser(user) {
+      this.$store.commit("setViewingUser", user);
+      this.$store.commit("setMenu", "Search");
     }
   },
   computed: mapState({

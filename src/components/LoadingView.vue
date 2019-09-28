@@ -1,6 +1,11 @@
 <template>
   <div class="compare-page">
-    <div class="compare-content">{{ loadingMessage }}</div>
+    <div class="compare-content">
+      <h3>{{ loadingMessage }}</h3>
+      <div class="spinner-border text-info" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -14,6 +19,7 @@ export default {
       loadingMessage: "Processing Repository Data"
     };
   },
+
   computed: mapState({
     menu: "menu"
   })
