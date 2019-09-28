@@ -35,6 +35,9 @@ export const store = new Vuex.Store({
         setCompareUser(state, user) {
             state.compareUser = user
         },
+        setCompatibilityScore(state, score) {
+            state.compatibilityScore = score
+        },
         clearViewingUser(state) {
             state.viewingUser = null
         },
@@ -46,7 +49,7 @@ export const store = new Vuex.Store({
     actions: {
         searchUser({ commit }, id) {
             commit('setLoading', true)
-            let query = base + "users/" + id
+            let query = "http://localhost:5000/?user=" + id
             Axios.get(query)
                 .then((response) => {
                     if (response.message != "Not Found") {
@@ -54,17 +57,18 @@ export const store = new Vuex.Store({
                     }
                     commit('setLoading', false)
                 })
+                .catch(commit('setLoading', false)()
         },
         compareUsers({ commit }, idA, idB) {
             commit('setLoading', true)
-            let query = base + "users/?user1=" + idA + "&user2=" + idB
-            // Axios.get(query)
-            //     .then((response) => {
-            //         if (response.message != "Not Found") {
-            //             commit('setViewingUser', response)
-            //         }
-            //         commit('setLoading', false)
-            //     })
+            let query = "http://localhost:5000/?userA=" + idA + "&userB=" + idB
+            Axios.get(query)
+                .then((response) => {
+                    let users = [response.userA, response.userB]
+                    commit('setCompareUser',users)
+                    commit('setCompatibilityScore', response.similarity)
+                    commit('setLoading', false)
+                })
 
         }
     }
