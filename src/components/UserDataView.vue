@@ -49,9 +49,9 @@
       <table class="table table-borderless" style="border-top:none; text-align: center">
         <thead style="border-top:none">
           <tr style="border-top:none">
-            <th scope="col" class="br" style="border-top:none">Number of Repos:</th>
-            <th scope="col" class="br" style="border-top:none">Average Stars per Repo:</th>
-            <th scope="col" class="br" style="border-top:none">Average Closed Issues per Repo:</th>
+            <th scope="col" class="br" style="border-top:none">Number of Repositories:</th>
+            <th scope="col" class="br" style="border-top:none">Average Stars per Repository:</th>
+            <th scope="col" class="br" style="border-top:none">Issue Closure Ratio:</th>
             <th scope="col" style="border-top:none">Average Fork Count:</th>
           </tr>
         </thead>
@@ -131,10 +131,10 @@
         <div class="align-self-center justify-self-center">
           <div class="row">
             <div class="col-md-6 score-name text-center">
-              <h6>Comments Quality Score</h6>
+              <h6 class="text-center">Comments Quality Score</h6>
             </div>
             <div class="col-md-6 score-name  text-center" >
-              <h6>PR Quality Score</h6>
+              <h6 class="text-center">PR Quality Score</h6>
             </div>
             
           </div>
@@ -175,7 +175,7 @@
       <div class="score-card">
         <h3>Versatility</h3>
         <hr />
-        <div class="row" v-for="dependency in viewingUser.top_dependencies" v-bind:key="type">
+        <div class="row" v-for="dependency in viewingUser.top_dependencies" v-bind:key="dependency">
           <div class="col-md-10 score-name">{{ dependency[0] }}</div>
           <div class="col-md-2">{{ dependency[1] }}</div>
         </div>
