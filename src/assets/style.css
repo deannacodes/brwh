@@ -221,12 +221,11 @@ button:disabled:hover {
     background: white;
     margin: 30px;
     padding: 30px;
-    max-width: 30%;
-    width: 30%;
+    max-width: 40%;
+    width: 40%;
     line-height: 30px;
     display: inline-block;
     text-align: left;
-    min-height: 250px;
 
 }
 
@@ -247,8 +246,20 @@ button:disabled:hover {
     margin: 0 auto;
 }
 
-.score-card-main h1 {
+.score-card-main h1, .score-card-main h3, .score-card-third h3, .score-card-two-thirds h3, .score-card-third h6, .score-card-two-thirds h6 {
     text-align: center;
+}
+
+.score-card-third {
+    width: 25%;
+    max-width: 25%;
+    text-align: center;
+}
+
+.score-card-two-thirds {
+    width: 55%;
+    max-width: 55%;
+    text-align:center;
 }
 
 .score-name {
@@ -259,4 +270,8 @@ button:disabled:hover {
 
 .data-holder {
     text-align: center;
+}
+
+.br {
+    border-right: 1px solid #efefef;
 }
